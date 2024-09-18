@@ -27,7 +27,7 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.get("/items/{item_reference}")
+@app.get("/questions")
 async def get_item(item_reference: str, organization_id: int = Query(..., description="ID of the item bank")):
     return await learnosity_svc.get_item(item_reference, organization_id)
 
