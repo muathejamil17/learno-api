@@ -5,6 +5,20 @@ from pydantic import BaseModel
 from typing import List, Literal
 
 
+class LearnosityTag(BaseModel):
+    """
+    Learnosity tag model.
+    """
+    type: str
+    name: str
+
+    def to_dict(self):
+        return {
+            "type": self.type,
+            "name": self.name
+        }
+
+
 class Option(BaseModel):
     value: str
     label: str

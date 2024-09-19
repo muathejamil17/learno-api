@@ -1,18 +1,24 @@
 from learnosity_sdk.request import DataApi
 from learnosity_sdk.utils import Uuid
-from models.learnosity_models import Question
+from models.learnosity_models import Question, LearnosityTag
+from typing import List
 
 
 class LearnosityService:
 
     def __init__(self, consumer_key: str, consumer_secret: str, domain: str, questions_endpoint: str) -> None:
+        """
+
+        Returns:
+            object: 
+        """
         self.data_api = DataApi()
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
         self.domain = domain
         self.questions_endpoint = questions_endpoint
 
-    async def get_item(self, item_reference: str, organization_id: int):
+    async def get_item(self, item_reference: str, organization_id: int, tags: List[LearnosityTag]):
         security_packet = {
             "consumer_key": self.consumer_key,
             "domain": self.domain,
@@ -21,7 +27,8 @@ class LearnosityService:
         request_packet = {
             "activity_id": Uuid.generate(),
             "items": [item_reference],
-            "organisation_id": organization_id
+            "organisation_id": organization_id,
+            "advanced_tags": {"all": [tg.to_dict() for tg in tags]}
         }
 
         response = self.data_api.request(

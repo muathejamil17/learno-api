@@ -5,7 +5,7 @@ class Settings(BaseSettings):
     CONSUMER_KEY: str
     CONSUMER_SECRET: str
     DOMAIN: str
-    QUESTIONS_ENDPOINT: str
+    DATA_BASE_URL: str
     ORGANIZATION_ID: int
 
     class Config:
