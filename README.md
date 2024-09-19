@@ -73,7 +73,7 @@ The API will be available at `http://localhost:8000`.
 
 ### Get Questions
 - `GET /questions/{item_reference}`: Retrieve a items in specific reference
-
+- `curl --location 'http://localhost:8000/questions/{reference_id}?organization_id=<org_id>&tags=<type>:<name>'`
 ### Create Question
 - `POST /questions`: Create a new Learnosity item
 
